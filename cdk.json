@@ -1,5 +1,5 @@
 {
-  "app": "node bin/prsls-workshop.js",
+  "app": "node cdk/main.js",
   "watch": {
     "include": [
       "**"
