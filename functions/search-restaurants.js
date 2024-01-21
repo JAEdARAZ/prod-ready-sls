@@ -7,7 +7,7 @@ const dynamodb = DynamoDBDocumentClient.from(dynamodbClient)
 
 const middyCacheEnabled = JSON.parse(process.env.middy_cache_enabled)
 const middyCacheExpiry = parseInt(process.env.middy_cache_expiry_milliseconds)
-const { service_name, stage_name } = process.env
+const { service_name, ssm_stage_name } = process.env
 const tableName = process.env.restaurants_table
 
 const findRestaurantsByTheme = async (theme, count) => {
@@ -38,6 +38,6 @@ module.exports.handler = middy(async (event, context) => {
   cacheExpiry: middyCacheExpiry,
   setToContext: true,
   fetchData: {
-    config: `/${service_name}/${stage_name}/search-restaurants/config`
+    config: `/${service_name}/${ssm_stage_name}/search-restaurants/config`
   }
 }))
